@@ -1,0 +1,464 @@
+---
+const photos = [
+  "/images/photo1.jpg",
+  "/images/photo2.jpg",
+  "/images/photo3.jpg",
+  "/images/photo4.jpg",
+  "/images/photo5.jpg",
+  "/images/photo6.jpg",
+  "/images/photo7.jpg",
+];
+
+const stats = [
+  ["Height", "172 cm"],
+  ["Clothing", "M"],
+  ["Chest", "87 cm"],
+  ["Waist", "76.5 cm"],
+  ["Hips", "84 cm"],
+  ["Shoes", "40.5 EU"],
+  ["Hair", "Brown"],
+  ["Eyes", "Dark brown"],
+];
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milan Güler | Model Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <main>
+    <section class="hero">
+      <p class="small">Commercial & Lifestyle Model</p>
+      <h1>Milan Güler</h1>
+      <p class="subtitle">Bern, Switzerland · Available for campaigns, commercials and shootings</p>
+    </section>
+
+    <section class="portfolio">
+      <h2>Portfolio</h2>
+
+      <div class="gallery">
+        {photos.map((photo) => (
+          <button class="photo" onclick={`openImage('${photo}')`}>
+            <img src={photo} alt="Milan Güler portfolio photo" />
+          </button>
+        ))}
+      </div>
+    </section>
+
+<section class="worked">
+  <p class="small">Worked together with</p>
+
+  <div class="brand-grid">
+    <div class="brand-card">
+      <span>01</span>
+      <strong>Sephora</strong>
+      <p>Beauty Campaign</p>
+    </div>
+
+    <div class="brand-card">
+      <span>02</span>
+      <strong>PKZ</strong>
+      <p>Fashion Campaign</p>
+    </div>
+
+    <div class="brand-card">
+      <span>03</span>
+      <strong>BOSS</strong>
+      <p>Fashion Campaign</p>
+    </div>
+  </div>
+</section>
+
+    <section class="about">
+      <div class="about-text">
+        <p class="small">About</p>
+        <h2>Confidence, emotion and versatility in front of the camera.</h2>
+        <p>
+          Modeling is my way to express creativity, style and character. I enjoy working with different looks,
+          moods and expressions, especially in commercial, lifestyle, fashion and beauty campaigns.
+        </p>
+      </div>
+
+      <div class="measurements">
+        <h3>Measurements</h3>
+        <div class="grid">
+          {stats.map(([label, value]) => (
+            <div class="stat">
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <p class="small">Business Contact</p>
+      <h2>Bookings & inquiries</h2>
+
+      <div class="contact-list">
+        <a href="mailto:milan.guler@outlook.com">
+          <span>Email</span>
+          <strong>milan.guler@outlook.com</strong>
+        </a>
+
+        <a href="tel:+41789159600">
+          <span>Phone</span>
+          <strong>+41 78 915 96 00</strong>
+        </a>
+
+        <a href="https://www.instagram.com/itsmmilan/" target="_blank">
+          <span>Instagram</span>
+          <strong>@itsmmilan</strong>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" onclick="closeImage()">
+    <img id="modalImage" alt="Large portfolio image" />
+  </div>
+
+  <script is:inline>
+    function openImage(src) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modalImage").src = src;
+    }
+
+    function closeImage() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: #17130f;
+      background: linear-gradient(135deg, #f7efe4, #e3cdb3);
+      overflow-x: hidden;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .hero {
+      min-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .small {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+      font-weight: 600;
+      color: #7b6048;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(64px, 11vw, 140px);
+      line-height: 0.9;
+      letter-spacing: -4px;
+      margin: 0;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #5d5146;
+      margin-top: 24px;
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1;
+      margin: 0 0 26px;
+    }
+
+    .portfolio {
+      margin-top: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 10px 0 32px;
+      scroll-snap-type: x mandatory;
+      cursor: grab;
+      width: 100%;
+    }
+
+    .gallery:active {
+      cursor: grabbing;
+    }
+
+    .photo {
+      flex: 0 0 auto;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      scroll-snap-align: start;
+    }
+
+    .photo img {
+      height: 520px;
+      max-height: 65vh;
+      width: auto;
+      max-width: 380px;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+      box-shadow: 0 26px 60px rgba(57, 40, 23, 0.25);
+      transition: 0.25s ease;
+    }
+
+    .photo img:hover {
+      transform: translateY(-6px);
+    }
+
+    .worked {
+      margin-top: 60px;
+      padding: 34px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.42);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.brand-card {
+  min-height: 190px;
+  padding: 26px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0.28)
+  );
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.25s ease;
+}
+
+.brand-card:hover {
+  transform: translateY(-8px);
+}
+
+.brand-card span {
+  font-size: 13px;
+  color: #8a6f56;
+  letter-spacing: 0.16em;
+}
+
+.brand-card strong {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 0.95;
+  color: #17130f;
+}
+
+.brand-card p {
+  margin: 0;
+  color: #6b5847;
+  font-size: 15px;
+}
+
+    .about {
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #5d5146;
+      max-width: 720px;
+    }
+
+    .measurements {
+      background: rgba(255,255,255,0.46);
+      border-radius: 30px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .measurements h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin: 0 0 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .stat {
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      padding-bottom: 12px;
+    }
+
+    .stat span {
+      display: block;
+      color: #7b6048;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 19px;
+    }
+
+    .contact {
+      margin-top: 80px;
+      margin-bottom: 30px;
+      padding: 42px;
+      border-radius: 34px;
+      background: #17130f;
+      color: #f7efe4;
+    }
+
+    .contact .small {
+      color: #cdb79f;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+      max-width: 760px;
+    }
+
+    .contact-list a {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #f7efe4;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .contact-list span {
+      color: #cdb79f;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-list strong {
+      font-size: 21px;
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      cursor: zoom-out;
+      padding: 20px;
+    }
+
+    .modal img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 18px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 850px) {
+      main {
+        padding: 24px;
+      }
+
+      .hero {
+        min-height: 36vh;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .subtitle {
+        font-size: 17px;
+      }
+
+      .photo img {
+        height: 420px;
+        max-width: 300px;
+      }
+
+      .worked {
+        padding: 26px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        padding: 28px;
+      }
+
+     .contact-list strong {
+  font-size: 18px;
+}
+
+.brand-grid {
+  grid-template-columns: 1fr;
+}
+}
+  </style>
+</body>
+</html>
