@@ -75,19 +75,19 @@ const stats = [
   <div class="brand-grid">
     <div class="brand-card">
       <span>01</span>
-      <strong>Sephora</strong>
+      <img src="/MilanGuler/logos/Sephora.png" alt="Sephora logo" />
       <p>Beauty Campaign</p>
     </div>
 
     <div class="brand-card">
       <span>02</span>
-      <strong>PKZ</strong>
+      <img src="/MilanGuler/logos/PkZ.png" alt="PKZ logo" />
       <p>Fashion Campaign</p>
     </div>
 
     <div class="brand-card">
       <span>03</span>
-      <strong>BOSS</strong>
+      <img src="/MilanGuler/logos/Boss.png" alt="BOSS logo" />
       <p>Fashion Campaign</p>
     </div>
   </div>
@@ -301,11 +301,13 @@ const stats = [
   letter-spacing: 0.16em;
 }
 
-.brand-card strong {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(38px, 5vw, 72px);
-  line-height: 0.95;
-  color: #17130f;
+.brand-card img {
+  max-width: 280px;
+  max-height: 90px;
+  object-fit: contain;
+  display: block;
+  margin: 20px 0;
+  filter: grayscale(100%);
 }
 
 .brand-card p {
